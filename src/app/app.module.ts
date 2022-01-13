@@ -1,28 +1,47 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
 
 import { AppMaterialModule } from "./app-material/app-material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { BodyComponent } from "./components/body/body.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { HeaderComponent } from "./components/header/header.component";
+import { HomeComponent } from "./components/home/home.component";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HeaderComponent,
 		FooterComponent,
-		BodyComponent
+		ToolbarComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		AppMaterialModule
+		AppMaterialModule,
+		ReactiveFormsModule,
+		SocialLoginModule
 	],
-	providers: [],
+	providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              "390096752043-3oq42ub5dsu078e1o7dlalokeftn7ufh.apps.googleusercontent.com"
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
