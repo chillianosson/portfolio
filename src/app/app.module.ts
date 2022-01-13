@@ -10,13 +10,17 @@ import { AppComponent } from "./app.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { BlogComponent } from './components/blog/blog.component';
+import { SidenavListComponent } from './components/sidenav-list/sidenav-list.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		FooterComponent,
 		ToolbarComponent,
-		HomeComponent
+		HomeComponent,
+  BlogComponent,
+  SidenavListComponent
 	],
 	imports: [
 		BrowserModule,
