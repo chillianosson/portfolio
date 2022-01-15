@@ -1,7 +1,16 @@
-<mat-card>
-	I build large scale applications primarily with Angular, in JavaScript, for desktop, tablet, mobile or server.
-	Combined with a background in UX and design means I can take applications from conception to completion autonomously.
-	I can also provide consulting and advice on solutions or design ideas.
-	On the web, I work with both vanilla and framework-based applications with strong capabilities in popular frameworks
-	such as Angular and React.
-</mat-card>
+<!-- <cdk-virtual-scroll-viewport class="example-viewport"> -->
+<!-- <div *cdkVirtualFor="let item of items" class="example-item"> -->
+<!-- <mat-card> -->
+<!-- {{item}} -->
+<!-- </mat-card> -->
+<!-- </div> -->
+<!-- </cdk-virtual-scroll-viewport> -->
+
+<cdk-virtual-scroll-viewport [itemSize]="items.length" class="example-viewport"
+	[style.height]="screenHeight + 'px'">
+	<div *cdkVirtualFor="let item of items">
+		<mat-card>
+			{{item}}
+		</mat-card>
+	</div>
+</cdk-virtual-scroll-viewport>
