@@ -8,7 +8,6 @@ import { AppMaterialModule } from "./app-material/app-material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BlogComponent } from "./components/blog/blog.component";
-import { FooterComponent } from "./components/footer/footer.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SidenavListComponent } from "./components/sidenav-list/sidenav-list.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
@@ -16,7 +15,6 @@ import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 @NgModule({
 	declarations: [
 		AppComponent,
-		FooterComponent,
 		ToolbarComponent,
 		HomeComponent,
 		BlogComponent,

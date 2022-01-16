@@ -14,8 +14,8 @@ export const routeTransitionAnimations = trigger('triggerName', [
 		query(':enter', [style({ right: '-100%', opacity: 0 })]),
 		query(':leave', animateChild()),
 		group([
-			query(':leave', [animate('1s ease-out', style({ right: '100%', opacity: 0 }))]),
-			query(':enter', [animate('1s ease-out', style({ right: '0%', opacity: 1 }))])
+			query(':leave', [animate('1s cubic-bezier(0.51, 0.92, 0.24, 1.15)', style({ right: '100%', opacity: 0 }))]),
+			query(':enter', [animate('1s cubic-bezier(0.51, 0.92, 0.24, 1.15)', style({ right: '0%', opacity: 1 }))])
 		]),
 		query(':enter', animateChild())
 	]),
@@ -32,8 +32,8 @@ export const routeTransitionAnimations = trigger('triggerName', [
 		query(':enter', [style({ left: '-100%', opacity: 0 })]),
 		query(':leave', animateChild()),
 		group([
-			query(':leave', [animate('1s ease-out', style({ left: '100%', opacity: 0 }))]),
-			query(':enter', [animate('1s ease-out', style({ left: '0%', opacity: 1 }))])
+			query(':leave', [animate('1s cubic-bezier(0.51, 0.92, 0.24, 1.15)', style({ left: '100%', opacity: 0 }))]),
+			query(':enter', [animate('1s cubic-bezier(0.51, 0.92, 0.24, 1.15)', style({ left: '0%', opacity: 1 }))])
 		]),
 		query(':enter', animateChild())
 	])
