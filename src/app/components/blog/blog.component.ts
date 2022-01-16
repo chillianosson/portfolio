@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from "@angular/core";
 
+import { item1 } from "./const";
+
 @Component({
 	selector: 'app-blog',
 	templateUrl: './blog.component.html',
 	styleUrls: ['./blog.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogComponent implements OnInit{
+export class BlogComponent implements OnInit {
 
 	screenHeight = 0;
 	screenWidth = 0;
@@ -14,11 +16,11 @@ export class BlogComponent implements OnInit{
 
 	@HostListener('window:resize', ['$event'])
 	onResize() {
-		this.screenHeight = window.innerHeight;
+		this.screenHeight = window.innerHeight - 41;
 	}
 
 	items = [
-		"I build large scale applications primarily with Angular, in JavaScript, for desktop, tablet, mobile or server.Combined with a background in UX and design means I have now the ability to take applications from conception to completion autonomously."
+		item1
 	];
 
 	constructor() {
