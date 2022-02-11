@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { select, Store } from "@ngrx/store";
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from "angularx-social-login";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: 'app-home',
@@ -15,7 +17,7 @@ export class HomeComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private socialAuthService: SocialAuthService
+		private socialAuthService: SocialAuthService,
 	) {
 		this.loginForm = this.formBuilder.group({
 			email: ['', Validators.required],

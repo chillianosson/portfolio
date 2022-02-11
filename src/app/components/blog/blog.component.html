@@ -1,15 +1,7 @@
-<!-- <cdk-virtual-scroll-viewport class="example-viewport"> -->
-<!-- <div *cdkVirtualFor="let item of items" class="example-item"> -->
-<!-- <mat-card> -->
-<!-- {{item}} -->
-<!-- </mat-card> -->
-<!-- </div> -->
-<!-- </cdk-virtual-scroll-viewport> -->
-
-<cdk-virtual-scroll-viewport [itemSize]="items.length" class="example-viewport"
+<cdk-virtual-scroll-viewport [itemSize]="items.length" class="items" class="example-viewport"
 	[style.height]="screenHeight + 'px'">
-	<div *cdkVirtualFor="let item of items">
-		<mat-card>
+	<div *cdkVirtualFor="let item of items" class="item">
+		<mat-card @fadeAnimation >
 			{{item}}
 		</mat-card>
 	</div>
