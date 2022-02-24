@@ -17,7 +17,7 @@ import { CovidComponent } from "./components/covid/covid.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SidenavListComponent } from "./components/sidenav-list/sidenav-list.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { metaReducers, reducers } from "./reducers";
+import { metaReducers, reducers } from "./store/reducers";
 
 @NgModule({
 	declarations: [
@@ -36,9 +36,10 @@ import { metaReducers, reducers } from "./reducers";
 		ReactiveFormsModule,
 		SocialLoginModule,
 		StoreModule.forRoot(reducers, { metaReducers }),
-		// Router Store module will save its state inside the store under an application state property named router (configured via the stateKey)
 		!environment.production ? StoreDevtoolsModule.instrument() : [],
-        StoreRouterConnectingModule.forRoot({stateKey:'router'})
+		StoreRouterConnectingModule.forRoot(
+			{ stateKey: 'router' }
+		)
 	],
 	providers: [
 		{

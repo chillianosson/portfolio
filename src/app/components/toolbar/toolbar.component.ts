@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { toggleSideNav } from "src/app/store/sideNav/sidenav.actions";
 
 @Component({
 	selector: 'app-toolbar',
@@ -9,10 +11,10 @@ export class ToolbarComponent {
 
 	@Output() SideNavToggle = new EventEmitter();
 
-	constructor() { }
+	constructor(private store: Store) { }
 
 	toggleSidenav() {
-		// this.store.dispatch(toggleNavigation());
+		this.store.dispatch(toggleSideNav());
 	}
 
 }

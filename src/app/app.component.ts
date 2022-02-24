@@ -1,7 +1,11 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Event, NavigationEnd, Router, RouterOutlet } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable, of, Subscription } from "rxjs";
 
 import { routeTransitionAnimations } from "./route-transition-animations";
+import { AppState, selectSideNavState } from "./store/reducers";
+import { toggleSideNav } from "./store/sideNav/sidenav.actions";
 
 @Component({
 	selector: 'app-root',
@@ -9,16 +13,32 @@ import { routeTransitionAnimations } from "./route-transition-animations";
 	styleUrls: ['./app.component.scss'],
 	animations: [routeTransitionAnimations]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 	title = 'portfolio';
-	@ViewChild('sidenav') sidenav: any;
 	show = false;
+	sideBarOpened$: Observable<boolean>;
+	routerSub$$: Subscription;
 
 	constructor(
+		private store: Store<AppState>,
+		private router: Router
 	) {
+		this.routerSub$$ = this.router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationEnd) {
+				this.store.dispatch(toggleSideNav());
+			}
+		});
+
+		this.sideBarOpened$ = this.store.select(selectSideNavState);
+
 	}
 
 	ngOnInit(): void {
+		this.sideBarOpened$.subscribe(res => console.log('res is ', res));
+	}
+
+	ngOnDestroy(): void {
+		this.routerSub$$.unsubscribe();
 	}
 
 	prepareRoute(outlet: RouterOutlet) {
@@ -26,5 +46,6 @@ export class AppComponent implements OnInit {
 			outlet.activatedRouteData &&
 			outlet.activatedRouteData['animationState'];
 	}
+
 
 }

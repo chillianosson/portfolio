@@ -1,7 +1,12 @@
-
-
+<button (click)="toggleSidenav()" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+	<mat-icon>close</mat-icon>
+</button>
 
 <mat-list role="list">
-  <mat-list-item role="listitem"><a mat-button color="primary" routerLink="/home">Home</a></mat-list-item>
-  <mat-list-item role="listitem"><a mat-button color="primary" routerLink="/blog">Blog</a></mat-list-item>
+  <mat-list-item role="listitem"
+    ><a mat-button color="primary" routerLink="/home">Home</a></mat-list-item
+  >
+  <mat-list-item role="listitem"
+    ><a mat-button color="primary" routerLink="/blog">Blog</a></mat-list-item
+  >
 </mat-list>
