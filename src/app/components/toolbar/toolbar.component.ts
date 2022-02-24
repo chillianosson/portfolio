@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { toggleNavigation } from "src/app/AppActions";
 
 @Component({
 	selector: 'app-toolbar',
@@ -11,10 +9,10 @@ export class ToolbarComponent {
 
 	@Output() SideNavToggle = new EventEmitter();
 
-	constructor(private store: Store<{ showNavigation: boolean }>) { }
+	constructor() { }
 
 	toggleSidenav() {
-		this.store.dispatch(toggleNavigation());
+		// this.store.dispatch(toggleNavigation());
 	}
 
 }

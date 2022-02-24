@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { select, Store } from "@ngrx/store";
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from "angularx-social-login";
-import { Observable } from "rxjs";
 
 @Component({
 	selector: 'app-home',

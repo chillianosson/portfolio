@@ -2,20 +2,22 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
-import { environment } from "src/environments/environment";
+
+import { environment } from "../environments/environment";
 
 import { AppMaterialModule } from "./app-material/app-material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AppReducer } from "./app.reducer";
 import { BlogComponent } from "./components/blog/blog.component";
+import { CovidComponent } from "./components/covid/covid.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SidenavListComponent } from "./components/sidenav-list/sidenav-list.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { CovidComponent } from './components/covid/covid.component';
+import { metaReducers, reducers } from "./reducers";
 
 @NgModule({
 	declarations: [
@@ -24,7 +26,7 @@ import { CovidComponent } from './components/covid/covid.component';
 		HomeComponent,
 		BlogComponent,
 		SidenavListComponent,
-  CovidComponent
+		CovidComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -33,11 +35,10 @@ import { CovidComponent } from './components/covid/covid.component';
 		AppMaterialModule,
 		ReactiveFormsModule,
 		SocialLoginModule,
-		StoreModule.forRoot({ AppReducer }, {}),
-		StoreDevtoolsModule.instrument({
-			maxAge: 25,
-			logOnly: environment.production
-		})
+		StoreModule.forRoot(reducers, { metaReducers }),
+		// Router Store module will save its state inside the store under an application state property named router (configured via the stateKey)
+		!environment.production ? StoreDevtoolsModule.instrument() : [],
+        StoreRouterConnectingModule.forRoot({stateKey:'router'})
 	],
 	providers: [
 		{
