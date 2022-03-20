@@ -17,31 +17,24 @@ export class AppComponent implements OnInit, OnDestroy {
 	title = 'portfolio';
 	show = false;
 	sideBarOpened$: Observable<boolean>;
-	routerSub$$: Subscription;
 
 	constructor(
 		private store: Store<AppState>,
 		private router: Router
 	) {
-		this.routerSub$$ = this.router.events.subscribe((event: Event) => {
-			if (event instanceof NavigationEnd) {
-				this.store.dispatch(toggleSideNav());
-			}
-		});
-
+		// sidebar toggle behaviour
 		this.sideBarOpened$ = this.store.select(selectSideNavState);
-
 	}
 
 	ngOnInit(): void {
-		this.sideBarOpened$.subscribe(res => console.log('res is ', res));
 	}
 
 	ngOnDestroy(): void {
-		this.routerSub$$.unsubscribe();
+
 	}
 
 	prepareRoute(outlet: RouterOutlet) {
+		// animation for route changes
 		return outlet &&
 			outlet.activatedRouteData &&
 			outlet.activatedRouteData['animationState'];

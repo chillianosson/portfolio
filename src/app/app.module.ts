@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule, HttpHandler } from "@angular/common/http";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -17,6 +18,9 @@ import { CovidComponent } from "./components/covid/covid.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SidenavListComponent } from "./components/sidenav-list/sidenav-list.component";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { ApexLegendsService } from "./services/apex-legends.service";
+import { CacheService } from "./services/cache.service";
+import { HttpClientService } from "./services/http-client.service";
 import { metaReducers, reducers } from "./store/reducers";
 
 @NgModule({
@@ -30,6 +34,7 @@ import { metaReducers, reducers } from "./store/reducers";
 	],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		AppMaterialModule,
@@ -42,6 +47,9 @@ import { metaReducers, reducers } from "./store/reducers";
 		)
 	],
 	providers: [
+		ApexLegendsService,
+		HttpClientService,
+		CacheService,
 		{
 			provide: 'SocialAuthServiceConfig',
 			useValue: {
